@@ -12,12 +12,12 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/nejcm/js-library-boilerplate"
+    "url": "https://github.com/nejcm/react-image"
   },
   "bugs": {
-    "url": "https://github.com/nejc/js-library-boilerplate/issues"
+    "url": "https://github.com/nejc/react-image/issues"
   },
-  "homepage": "https://github.com/nejcm/js-library-boilerplate",
+  "homepage": "https://github.com/nejcm/react-image",
   "engines": {
     "node": ">=8",
     "npm": ">=5"
