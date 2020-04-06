@@ -1,4 +1,5 @@
-import {measure2Css} from '@nejcm/js-helpers';
+const measure2Css = (value) =>
+  value ? (typeof value === 'string' ? value : `${value}px`) : undefined;
 
 /**
  *  Returns common measures css
