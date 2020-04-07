@@ -36,7 +36,7 @@ export const BackgroundImageWrapper = styled(
     ...rest
   }) => `
     ${measuresCss({width, height, ...rest})}
-    background-image: url(${src});
+    ${src ? `background-image: url(${src});` : ''}
     ${background.color ? `background-color: ${background.color};` : ''}
     background-size: ${background.size || 'cover'};
     background-position: ${background.position || 'center'};

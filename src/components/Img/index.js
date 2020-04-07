@@ -48,7 +48,7 @@ Img.propTypes = {
     */
   srcset: PropTypes.arrayOf(
     PropTypes.shape({
-      src: PropTypes.string,
+      src: PropTypes.string.isRequired,
       condition: PropTypes.string,
     }),
   ),
@@ -57,7 +57,7 @@ Img.propTypes = {
     */
   sizes: PropTypes.arrayOf(
     PropTypes.shape({
-      size: PropTypes.string,
+      size: PropTypes.string.isRequired,
       condition: PropTypes.string,
     }),
   ),

@@ -5,7 +5,7 @@ import {BackgroundImageWrapper} from './styles';
 const BackgroundImage = (props) => <BackgroundImageWrapper {...props} />;
 
 BackgroundImage.propTypes = {
-  src: PropTypes.string.isRequired,
+  src: PropTypes.string,
   background: PropTypes.shape({
     size: PropTypes.string,
     color: PropTypes.string,
@@ -21,8 +21,8 @@ BackgroundImage.propTypes = {
   maxHeight: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   srcset: PropTypes.arrayOf(
     PropTypes.shape({
-      src: PropTypes.string,
-      maxWidth: PropTypes.string,
+      src: PropTypes.string.isRequired,
+      maxWidth: PropTypes.string.isRequired,
     }),
   ),
   children: PropTypes.node,

@@ -1,6 +1,6 @@
 # React image
 
-<blockquote>React image component</blockquote>
+<blockquote>A simple react image and background image component for loading responsive images with fallback support.</blockquote>
 <br />
 
 <a href="https://www.joypixels.com/profiles/emoji/framed-picture">
@@ -39,7 +39,6 @@
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
-- [Getting started](#getting-started)
 - [Installation](#installation)
 - [Docs & Examples](#docs--examples)
 - [Issues](#issues)
@@ -52,19 +51,6 @@
 - [LICENSE](#license)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
-
-## Getting Started
-
-React image component.
-
-### Built With
-
-- Love :heart:
-
-### Prerequisites
-
-- React >= 16
-- Node.js >=8
 
 ## Installation
 
@@ -189,7 +175,7 @@ Reach out to us at one of the following places:
 [requests]: https://github.com/nejcm/react-image/issues?q=is%3Aissue+sort%3Areactions-%2B1-desc+label%3Aenhancement+is%3Aopen
 [semantic-release-badge]: https://img.shields.io/badge/%20%20%F0%9F%93%A6%F0%9F%9A%80-semantic--release-e10079.svg
 [semantic-release]: https://github.com/semantic-release/semantic-release
-[storybook-badge]: https://nejcmursic.netlify.com/storybook.svg
+[storybook-badge]: https://nejcmursic.netlify.com/assets/storybook.svg
 [storybook]: https://storybook.js.org/
 [style-guide-badge]: https://img.shields.io/badge/code_style-standard-brightgreen.svg
 [style-guide]: https://standardjs.com
