@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/nejcm/react-image/compare/v1.0.0...v1.1.0) (2020-04-07)
+
+
+### Features
+
+* added types, made image src optional ([53e16ae](https://github.com/nejcm/react-image/commit/53e16ae22b4fddbcab0c8873932971703a4285d9))
+
 # 1.0.0 (2020-03-22)
 
 
