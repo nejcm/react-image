@@ -14,22 +14,31 @@ const buildSizes = (sizes) => {
     : null;
 };
 
-const Img = ({fallback, srcset, sizes, hideOnError = true, ...rest}) => (
+const onLoad = (event) => event.currentTarget.classList.add('loaded');
+
+const onError = (event, fallback) => {
+  const elem = event.currentTarget;
+  if (fallback && elem.src !== fallback) {
+    elem.src = fallback;
+  } else {
+    elem.style.display = 'none';
+  }
+};
+
+const Img = ({
+  loader = true,
+  fallback,
+  srcset,
+  sizes,
+  hideOnError = true,
+  ...rest
+}) => (
   <ImageWrapper
+    loader={loader}
     srcSet={buildSrcSet(srcset)}
     sizes={buildSizes(sizes)}
-    onError={
-      hideOnError
-        ? (event) => {
-            const elem = event.currentTarget;
-            if (fallback && elem.src !== fallback) {
-              elem.src = fallback;
-            } else {
-              elem.style.display = 'none';
-            }
-          }
-        : null
-    }
+    onLoad={loader ? onLoad : null}
+    onError={hideOnError ? onError.bind(fallback) : loader ? onLoad : null}
     {...rest}
   />
 );
@@ -61,6 +70,10 @@ Img.propTypes = {
       condition: PropTypes.string,
     }),
   ),
+  /**
+    Show loader or custom loader
+    */
+  loader: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
   /**
     Image alt text
     */

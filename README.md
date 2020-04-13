@@ -1,6 +1,6 @@
 # React image
 
-<blockquote>A simple react image and background image component for loading responsive images with fallback support.</blockquote>
+<blockquote>A simple react image and background image component with support for responsive images, fallback image and loader.</blockquote>
 <br />
 
 <a href="https://www.joypixels.com/profiles/emoji/framed-picture">

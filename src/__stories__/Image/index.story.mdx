@@ -1,5 +1,5 @@
-import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
-import { Image } from '../../index.js';
+import {Meta, Story, Preview, Props} from '@storybook/addon-docs/blocks';
+import {Image} from '../../index.js';
 
 <Meta title="Image" component={Image} />
 
@@ -9,14 +9,20 @@ import { Image } from '../../index.js';
 
 <Preview>
   <Story name="Usage">
-    <Image src="https://via.placeholder.com/1024x600.jpg?text=react-image" maxWidth={500} alt="Placeholder" />
+    <div>
+      <h2>Check the docs.</h2>
+      <Image
+        src="https://via.placeholder.com/1024x600.jpg?text=react-image"
+        maxWidth={500}
+        alt="Placeholder"
+      />
+    </div>
   </Story>
 </Preview>
 
 ## Props
 
 <Props of={Image} />
-
 
 ## Examples
 
@@ -25,93 +31,134 @@ import { Image } from '../../index.js';
 ### 1. With fallback
 
 <Preview>
-  <Image 
-    src="https://wrong-url.com" 
-    alt="Placeholder" 
-    fallback="https://via.placeholder.com/1600x600.jpg?text=fallback-1600x600" 
-    />
+  <Image
+    src="https://wrong-url.com"
+    alt="Placeholder"
+    fallback="https://via.placeholder.com/1600x600.jpg?text=fallback-1600x600"
+  />
 </Preview>
-
 
 ### 2. With srcset
 
 Resize browser window to see effect.
 
 <Preview>
-  <Image 
-    src="https://via.placeholder.com/1600x600.jpg?text=1600x600" 
-    alt="Placeholder" 
+  <Image
+    src="https://via.placeholder.com/1600x600.jpg?text=1600x600"
+    alt="Placeholder"
     srcset={[
       {
         src: 'https://via.placeholder.com/1600x600.jpg?text=1600x600',
-        condition: '1600w'
+        condition: '1600w',
       },
       {
         src: 'https://via.placeholder.com/1024x400.jpg?text=1024x400',
-        condition: '1024w'
+        condition: '1024w',
       },
       {
         src: 'https://via.placeholder.com/768x300.jpg?text=768x300',
-        condition: '768w'
+        condition: '768w',
       },
       {
         src: 'https://via.placeholder.com/480x200.jpg?text=480x200',
-        condition: '480w'
-      }
-    ]} />
+        condition: '480w',
+      },
+    ]}
+  />
 </Preview>
-
 
 ### 2. With sizes
 
 Resize browser window to see effect.
 
 <Preview>
-  <Image 
-    src="https://via.placeholder.com/1600x600.jpg?text=1600x600" 
-    alt="Placeholder" 
+  <Image
+    src="https://via.placeholder.com/1600x600.jpg?text=1600x600"
+    alt="Placeholder"
     srcset={[
       {
         src: 'https://via.placeholder.com/1600x600.jpg?text=1600x600',
-        condition: '1600w'
+        condition: '1600w',
       },
       {
         src: 'https://via.placeholder.com/1024x400.jpg?text=1024x400',
-        condition: '1024w'
+        condition: '1024w',
       },
       {
         src: 'https://via.placeholder.com/768x300.jpg?text=768x300',
-        condition: '768w'
+        condition: '768w',
       },
       {
         src: 'https://via.placeholder.com/480x200.jpg?text=480x200',
-        condition: '480w'
-      }
+        condition: '480w',
+      },
     ]}
     sizes={[
       {
         size: '768px',
-        condition: '(min-width: 1024px)'
+        condition: '(min-width: 1024px)',
       },
       {
         size: '1024px',
-        condition: '(min-width: 768px)'
+        condition: '(min-width: 768px)',
       },
       {
         size: '480px',
-        condition: '(max-width: 767px)'
-      }
-    ]} />
+        condition: '(max-width: 767px)',
+      },
+    ]}
+  />
 </Preview>
-
 
 ### 4. Hide on error
 
 Hide image in case of error.
 
 <Preview>
-  <Image 
-    src="https://wrong-url.com" 
+  <Image src="https://wrong-url.com" alt="Placeholder" />
+</Preview>
+
+### 5. Loader
+
+Show loader.
+
+<Preview>
+  <Image
+    loader
+    src="placeholder.png"
     alt="Placeholder"
-    />
+    width={180}
+    minWidth={180}
+    height={150}
+    minHeight={150}
+    onError={() => {
+      /* Just for demonstration purposes overload this method */
+    }}
+    onLoad={() => {
+      /* Just for demonstration purposes overload this method */
+    }}
+  />
+</Preview>
+
+Custom loader image (image url or base64 image).
+
+<Preview>
+  <Image
+    loader={
+      'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGlkPSJMNCIgdmlld0JveD0iMCAwIDIyIDIyIiB4PSIwcHgiIHk9IjBweCIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHhtbG5zOnhtbD0iaHR0cDovL3d3dy53My5vcmcvWE1MLzE5OTgvbmFtZXNwYWNlIiB4bWw6c3BhY2U9InByZXNlcnZlIiB2ZXJzaW9uPSIxLjEiIGVuYWJsZS1iYWNrZ3JvdW5kPSJuZXcgMCAwIDAgMCI+PGNpcmNsZSBmaWxsPSIjOTk5IiBzdHJva2U9Im5vbmUiIGN4PSIyIiBjeT0iMTEiIHI9IjIiPjxhbmltYXRlIHJlcGVhdENvdW50PSJpbmRlZmluaXRlIiBkdXI9IjFzIiBhdHRyaWJ1dGVOYW1lPSJvcGFjaXR5IiBiZWdpbj0iMC4xIiB2YWx1ZXM9IjA7MTswIi8+PC9jaXJjbGU+PGNpcmNsZSBmaWxsPSIjOTk5IiBzdHJva2U9Im5vbmUiIGN4PSIxMCIgY3k9IjExIiByPSIyIj48YW5pbWF0ZSByZXBlYXRDb3VudD0iaW5kZWZpbml0ZSIgZHVyPSIxcyIgYXR0cmlidXRlTmFtZT0ib3BhY2l0eSIgYmVnaW49IjAuMiIgdmFsdWVzPSIwOzE7MCIvPjwvY2lyY2xlPjxjaXJjbGUgZmlsbD0iIzk5OSIgc3Ryb2tlPSJub25lIiBjeD0iMTgiIGN5PSIxMSIgcj0iMiI+PGFuaW1hdGUgcmVwZWF0Q291bnQ9ImluZGVmaW5pdGUiIGR1cj0iMXMiIGF0dHJpYnV0ZU5hbWU9Im9wYWNpdHkiIGJlZ2luPSIwLjMiIHZhbHVlcz0iMDsxOzAiLz48L2NpcmNsZT48L3N2Zz4='
+    }
+    src="placeholder.png"
+    alt="Placeholder"
+    width={180}
+    minWidth={180}
+    height={150}
+    minHeight={150}
+    style={{backgroundSize: 50}}
+    onError={() => {
+      /* Just for demonstration purposes overload this method */
+    }}
+    onLoad={() => {
+      /* Just for demonstration purposes overload this method */
+    }}
+  />
 </Preview>

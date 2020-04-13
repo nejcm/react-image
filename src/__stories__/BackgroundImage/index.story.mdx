@@ -1,5 +1,5 @@
-import { Meta, Story, Preview, Props } from '@storybook/addon-docs/blocks';
-import { BackgroundImage } from '../../index.js';
+import {Meta, Story, Preview, Props} from '@storybook/addon-docs/blocks';
+import {BackgroundImage} from '../../index.js';
 
 <Meta title="Background image" component={BackgroundImage} />
 
@@ -9,17 +9,20 @@ import { BackgroundImage } from '../../index.js';
 
 <Preview>
   <Story name="Usage">
-    <BackgroundImage 
-      src="https://via.placeholder.com/1024x600.jpg?text=react-image" 
-      height={250}
-      maxWidth={500} />
+    <div>
+      <h2>Check the docs.</h2>
+      <BackgroundImage
+        src="https://via.placeholder.com/1024x600.jpg?text=react-image"
+        height={250}
+        maxWidth={500}
+      />
+    </div>
   </Story>
 </Preview>
 
 ## Props
 
 <Props of={BackgroundImage} />
-
 
 ## Examples
 
@@ -29,48 +32,48 @@ import { BackgroundImage } from '../../index.js';
 
 <Preview>
   <BackgroundImage
-    src="https://via.placeholder.com/100x100.jpg?text=100x100" 
+    src="https://via.placeholder.com/100x100.jpg?text=100x100"
     background={{
       size: 'auto',
       repeat: 'repeat',
     }}
     height={300}
-    />
+  />
 </Preview>
-
 
 ### 2. With children
 
 <Preview>
   <BackgroundImage
-    src="https://via.placeholder.com/800x600.jpg?text=800x600" 
+    src="https://via.placeholder.com/800x600.jpg?text=800x600"
     height={300}
   >
     <h1>Children prop</h1>
   </BackgroundImage>
 </Preview>
 
-
 ### 3. With srcset
 
-Uses media queries to load responsive image. Resize browser window to see effect.
+Uses media queries to load responsive image. Resize browser window to see
+effect.
 
 <Preview>
-  <BackgroundImage 
+  <BackgroundImage
     src="https://via.placeholder.com/1600x600.jpg?text=1600x600"
     height={450}
     srcset={[
       {
         src: 'https://via.placeholder.com/1024x400.jpg?text=1024x400',
-        maxWidth: '1024px'
+        maxWidth: '1024px',
       },
       {
         src: 'https://via.placeholder.com/768x300.jpg?text=768x300',
-        maxWidth: '768px'
+        maxWidth: '768px',
       },
       {
         src: 'https://via.placeholder.com/480x200.jpg?text=480x200',
-        maxWidth: '480px'
-      }
-    ]} />
+        maxWidth: '480px',
+      },
+    ]}
+  />
 </Preview>
