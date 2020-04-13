@@ -22,6 +22,7 @@ describe('Image', () => {
         {size: '1000px'},
       ],
       backgroundColor: '#666',
+      loader: false,
       hideOnError: false,
     };
     const {getByTestId} = render(<Image data-testid="target" {...props} />);
@@ -81,6 +82,39 @@ describe('Image', () => {
 
     expect(element).toHaveStyle({
       display: 'none',
+    });
+  });
+
+  test('should hide loader on error', () => {
+    const props = {
+      src: 'no-image.jpg',
+      alt: 'Image',
+    };
+    const {getByTestId} = render(<Image data-testid="target" {...props} />);
+    const element = getByTestId('target');
+
+    //expect(element).toHaveStyle({background: /.*url\(.*/i});
+
+    fireEvent(element, new Event('load'));
+
+    // Should hide on error
+    expect(element).toHaveStyle({
+      backgroundImage: 'none',
+    });
+  });
+
+  test('should show custom loader', () => {
+    const props = {
+      loader: 'custom.svg',
+      src: 'no-image.jpg',
+      alt: 'Image',
+      hideOnError: false,
+      onLoad: () => {}, // for testing
+    };
+    const {getByTestId} = render(<Image data-testid="target" {...props} />);
+    const element = getByTestId('target');
+    expect(element).toHaveStyle({
+      background: 'url(custom.svg) 50% no-repeat',
     });
   });
 });

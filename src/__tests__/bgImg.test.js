@@ -47,4 +47,13 @@ describe('Background image', () => {
       height: '100%',
     });
   });
+
+  test('renders background image without src', () => {
+    const {getByTestId} = render(<BackgroundImage data-testid="target" />);
+
+    const element = getByTestId('target');
+    expect(element).not.toHaveStyle({
+      backgroundImage: 'url()',
+    });
+  });
 });

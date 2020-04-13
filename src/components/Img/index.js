@@ -16,7 +16,7 @@ const buildSizes = (sizes) => {
 
 const onLoad = (event) => event.currentTarget.classList.add('loaded');
 
-const onError = (event, fallback) => {
+const onError = (fallback, event) => {
   const elem = event.currentTarget;
   if (fallback && elem.src !== fallback) {
     elem.src = fallback;
@@ -38,7 +38,9 @@ const Img = ({
     srcSet={buildSrcSet(srcset)}
     sizes={buildSizes(sizes)}
     onLoad={loader ? onLoad : null}
-    onError={hideOnError ? onError.bind(fallback) : loader ? onLoad : null}
+    onError={
+      hideOnError ? onError.bind(null, fallback) : loader ? onLoad : null
+    }
     {...rest}
   />
 );

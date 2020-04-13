@@ -1,6 +1,15 @@
-import {measuresCss} from '../helpers';
+import {measure2Css, measuresCss} from '../helpers';
 
 describe('Helpers', () => {
+  test('measure2Css should return correct values', () => {
+    const val = 20;
+    const result = measure2Css(val);
+    expect(result).toBe(`${val}px`);
+
+    const empty = measure2Css();
+    expect(empty).toBe(undefined);
+  });
+
   test('measuresCss should return empty string', () => {
     const result = measuresCss();
     expect(result.trim()).toBe('');

@@ -1,4 +1,4 @@
-const measure2Css = (value) =>
+export const measure2Css = (value) =>
   value ? (typeof value === 'string' ? value : `${value}px`) : undefined;
 
 /**
