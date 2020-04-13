@@ -2,15 +2,25 @@ import autoprefixer from 'autoprefixer';
 import postcss from 'postcss';
 import babel from 'rollup-plugin-babel';
 import commonjs from 'rollup-plugin-commonjs';
+import copy from 'rollup-plugin-copy';
 import filesize from 'rollup-plugin-filesize';
 import resolve from 'rollup-plugin-node-resolve';
 import replace from 'rollup-plugin-replace';
 import sass from 'rollup-plugin-sass';
+import svg from 'rollup-plugin-svg';
 import { uglify } from 'rollup-plugin-uglify';
 // eslint-disable-next-line import/extensions
 import pkg from './package.json';
 
 const external = (id) => (!id.startsWith('.') && !id.startsWith('/')) || id.endsWith('.css');
+
+const copyAssets = () => {
+  return copy({
+      targets: [
+        //{ src: 'assets/*', dest: 'dist/assets' }
+      ]
+    })
+}
 
 const stylesConfig = {
   output: 'dist/bundle.css',
@@ -62,7 +72,9 @@ const umdConfig = ({minify} = {}) => ({
     },
   },
   plugins: [
+    copyAssets(),
     sass(stylesConfig),
+    svg(),
     resolve(),
     babel(
       babelConfig({
@@ -93,7 +105,9 @@ const rollupConfig = [
     external,
     output: [{file: pkg.main, format: 'cjs'}],
     plugins: [
+      copyAssets(),
       sass(stylesConfig),
+      svg(),
       resolve(),
       babel(babelConfig({useESModules: false})),
       filesize()
@@ -106,7 +120,9 @@ const rollupConfig = [
     external,
     output: [{file: pkg.module, format: 'esm'}],
     plugins: [
+      copyAssets(),
       sass(stylesConfig),
+      svg(),
       resolve(),
       babel(babelConfig()),
       filesize()

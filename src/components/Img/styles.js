@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import React from 'react';
+import LoaderSvg from '../../../assets/loader.svg';
 import {measuresCss} from '../../helpers';
-import loaderSvg from './loader.svg';
 
 export const ImageWrapper = styled(
   ({
@@ -22,7 +22,7 @@ export const ImageWrapper = styled(
     ${
       loader
         ? `background: url(${
-            typeof loader === 'string' ? loader : loaderSvg
+            typeof loader === 'string' ? loader : LoaderSvg
           }) 50% no-repeat; 
           &.loaded {
             background-image: none;
