@@ -1,3 +1,16 @@
+# [1.2.0](https://github.com/nejcm/react-image/compare/v1.1.0...v1.2.0) (2020-04-13)
+
+
+### Bug Fixes
+
+* fixed build ([735c1b2](https://github.com/nejcm/react-image/commit/735c1b267e65842585f2a6a64885f5de74c977f7))
+* fixed tests ([5e54b60](https://github.com/nejcm/react-image/commit/5e54b607e0a7bc448137adf0b22ac8c10c5b272b))
+
+
+### Features
+
+* Added loader ([1b59cf1](https://github.com/nejcm/react-image/commit/1b59cf1a3e5cc876a339995342d7431c279e3760))
+
 # [1.1.0](https://github.com/nejcm/react-image/compare/v1.0.0...v1.1.0) (2020-04-07)
 
 
