@@ -34,7 +34,8 @@ merge of your pull request!
 
 <!-- to check an item, place an "x" in the box like so: "- [x] Documentation" -->
 
-- [ ] Documentation added to the [docs site]([FILL])
+- [ ] Documentation added to the
+      [docs site](https://nejcm.github.io/react-image/)
 - [ ] Tests
 - [ ] Typescript definitions updated
 - [ ] Ready to be merged

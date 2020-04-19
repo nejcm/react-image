@@ -15,9 +15,6 @@ and feature requests so we recommend not using this medium to ask them here 😁
 For questions related to using the library, please visit the docs or a support
 community instead of filing an issue on GitHub.
 
-- React Spectrum: [FILL]
-- Reactiflux on Discord: [FILL]
-- Stack Overflow: [FILL]
-- Documentation: [FILL]
+- Documentation: https://nejcm.github.io/react-image/
 
 **ISSUES WHICH ARE QUESTIONS WILL BE CLOSED**

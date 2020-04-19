@@ -21,12 +21,6 @@ Thanks for your interest in the project. We appreciate bugs filed and PRs submit
   ❓ Questions:
   For questions related to using the library, please visit the docs or a support community
   instead of filing an issue on GitHub.
-  * React Spectrum
-    [FILL]
-  * Reactiflux on Discord
-    [FILL]
-  * Stack Overflow
-    [FILL]
 
   **ISSUES WHICH ARE QUESTIONS WILL BE CLOSED**
 
