@@ -1,133 +1,47 @@
-import autoprefixer from 'autoprefixer';
-import postcss from 'postcss';
-import babel from 'rollup-plugin-babel';
-import commonjs from 'rollup-plugin-commonjs';
-import copy from 'rollup-plugin-copy';
-import filesize from 'rollup-plugin-filesize';
-import resolve from 'rollup-plugin-node-resolve';
-import replace from 'rollup-plugin-replace';
-import sass from 'rollup-plugin-sass';
-import svg from 'rollup-plugin-svg';
-import { uglify } from 'rollup-plugin-uglify';
-// eslint-disable-next-line import/extensions
-import pkg from './package.json';
+const autoprefixer = require('autoprefixer');
+const postcss = require('postcss');
+const sass = require('rollup-plugin-sass');
+const copy = require('rollup-plugin-copy');
+const svg = require('rollup-plugin-svg');
+const commonjs = require('rollup-plugin-commonjs');
+const babel = require('rollup-plugin-babel');
+const config = require('kcd-scripts/dist/config/rollup.config.js');
 
-const external = (id) => (!id.startsWith('.') && !id.startsWith('/')) || id.endsWith('.css');
+const copyAssets = () =>
+  copy({
+    targets: [
+      //{ src: 'assets/*', dest: 'dist/assets' }
+    ],
+  });
 
-const copyAssets = () => {
-  return copy({
-      targets: [
-        //{ src: 'assets/*', dest: 'dist/assets' }
-      ]
-    })
-}
+const babelPluginIndex = config.plugins.findIndex(
+  (plugin) => plugin.name === 'babel',
+);
+const cjsPluginIndex = config.plugins.findIndex(
+  (plugin) => plugin.name === 'commonjs',
+);
 
-const stylesConfig = {
-  output: 'dist/bundle.css',
-  processor: (css) => postcss([autoprefixer])
-    .process(css)
-    .then((result) => result.css)
-}
-
-const babelConfig = (
-  {useESModules, targets} = {
-    useESModules: true,
-    targets: {browsers: 'last 2 versions'},
-  },
-) => ({
-  comments: false,
+config.plugins[babelPluginIndex] = babel({
   runtimeHelpers: true,
-  presets: [
-    '@babel/preset-react',
-    [
-      '@babel/preset-env',
-      {
-        targets,
-      },
-    ],
-  ],
-  plugins: [
-    '@babel/plugin-proposal-class-properties',
-    ['@babel/transform-runtime', {useESModules, regenerator: false}],
-    'no-side-effect-class-properties',
-    ['babel-plugin-transform-react-remove-prop-types', {mode: 'unsafe-wrap'}],
-    ['babel-plugin-transform-async-to-promises', {inlineHelpers: true}],
-    'babel-plugin-minify-dead-code-elimination',
-  ],
-  exclude: ['node_modules/**', '*.css'],
 });
-
-const umdConfig = ({minify} = {}) => ({
-  input: pkg.source,
-  external: ['react', 'react-dom', 'prop-types'],
-  output: {
-    name: pkg.name,
-    sourcemap: true,
-    file: minify ? pkg['umd:main'].replace('.js', '.min.js') : pkg['umd:main'],
-    format: 'umd',
-    globals: {
-      react: 'React',
-      'react-dom': 'ReactDOM',
-      'prop-types': 'PropTypes',
-    },
-  },
-  plugins: [
-    copyAssets(),
-    sass(stylesConfig),
-    svg(),
-    resolve(),
-    babel(
-      babelConfig({
-        targets: {browsers: ['last 2 versions', 'safari >= 7']},
-      }),
-    ),
-    replace({
-      'process.env.NODE_ENV': JSON.stringify(
-        minify ? 'production' : 'development',
-      ),
-    }),
-    commonjs({
-      exclude: ['**/*.story.js'],
-    }),
-    minify ? uglify() : { },
-    filesize(),
-  ],
+config.plugins[cjsPluginIndex] = commonjs({
+  include: 'node_modules/**',
+  exclude: ['**/*.story.js'],
+  namedExports: {},
 });
+// Add sass support
+config.plugins.unshift(
+  sass({
+    output: 'dist/bundle.css',
+    processor: (css) =>
+      postcss([autoprefixer])
+        .process(css)
+        .then((result) => result.css),
+  }),
+);
+// Svg import support
+config.plugins.unshift(svg());
+// Copy assets
+config.plugins.unshift(copyAssets());
 
-const rollupConfig = [
-  // Browser-friendly UMD builds
-  umdConfig(),
-  umdConfig({minify: true}),
-
-  // CommonJS
-  {
-    input: pkg.source,
-    external,
-    output: [{file: pkg.main, format: 'cjs'}],
-    plugins: [
-      copyAssets(),
-      sass(stylesConfig),
-      svg(),
-      resolve(),
-      babel(babelConfig({useESModules: false})),
-      filesize()
-    ],
-  },
-
-  // ES module
-  {
-    input: pkg.source,
-    external,
-    output: [{file: pkg.module, format: 'esm'}],
-    plugins: [
-      copyAssets(),
-      sass(stylesConfig),
-      svg(),
-      resolve(),
-      babel(babelConfig()),
-      filesize()
-    ],
-  },
-];
-
-export default rollupConfig;
+module.exports = config;

@@ -6,4 +6,3 @@ package-lock.json
 package.json
 docs/
 README.md
-*.config.js

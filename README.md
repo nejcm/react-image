@@ -1,19 +1,7 @@
-# React image
+# 🖼️ React image
 
 <blockquote>A simple react image and background image component with support for responsive images, fallback image and loader.</blockquote>
 <br />
-
-<a href="https://www.joypixels.com/profiles/emoji/framed-picture">
-  <img
-    height="128"
-    width="128"
-    alt="picture"
-    src="https://d1j8pt39hxlh3d.cloudfront.net/emoji/emojione/5.5/png/unicode/128/1f5bc.png?119038208"
-  />
-</a>
-<br />
-<br />
-
 
 <!-- prettier-ignore-start -->
 [![NPM][npm-badge]][npm-link] 
