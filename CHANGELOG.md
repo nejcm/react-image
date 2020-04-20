@@ -1,3 +1,10 @@
+## [1.2.1](https://github.com/nejcm/react-image/compare/v1.2.0...v1.2.1) (2020-04-20)
+
+
+### Bug Fixes
+
+* fixed build and replaced rollup config with kcd-scripts ([098fa44](https://github.com/nejcm/react-image/commit/098fa44f04b6cc40d5bfc0e55fa601e4febc7e30))
+
 # [1.2.0](https://github.com/nejcm/react-image/compare/v1.1.0...v1.2.0) (2020-04-13)
 
 
