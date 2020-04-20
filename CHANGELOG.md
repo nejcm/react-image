@@ -1,3 +1,10 @@
+## [1.2.2](https://github.com/nejcm/react-image/compare/v1.2.1...v1.2.2) (2020-04-20)
+
+
+### Bug Fixes
+
+* fixed bug in build path, added missing emotion dep ([d6f7042](https://github.com/nejcm/react-image/commit/d6f7042cad8b7a2eef72e01a8b70d8b6907722b3))
+
 ## [1.2.1](https://github.com/nejcm/react-image/compare/v1.2.0...v1.2.1) (2020-04-20)
 
 
