@@ -1,5 +1,9 @@
 module.exports = {
-  presets: ['@babel/preset-env', '@babel/preset-react', '@babel/typescript'],
+  presets: [
+    '@babel/preset-env',
+    '@babel/preset-react',
+    '@babel/preset-typescript',
+  ],
   plugins: [
     ['@babel/transform-runtime', {regenerator: false}],
     'no-side-effect-class-properties',

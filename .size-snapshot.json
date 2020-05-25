@@ -27,5 +27,34 @@
     "bundled": 73875,
     "minified": 35008,
     "gzipped": 13193
+  },
+  "react-image.cjs.js": {
+    "bundled": 10623,
+    "minified": 7443,
+    "gzipped": 2079
+  },
+  "react-image.umd.min.js": {
+    "bundled": 11156,
+    "minified": 5913,
+    "gzipped": 2038
+  },
+  "react-image.umd.js": {
+    "bundled": 13467,
+    "minified": 6979,
+    "gzipped": 2238
+  },
+  "react-image.esm.js": {
+    "bundled": 10266,
+    "minified": 7165,
+    "gzipped": 2013,
+    "treeshaked": {
+      "rollup": {
+        "code": 3948,
+        "import_statements": 292
+      },
+      "webpack": {
+        "code": 5178
+      }
+    }
   }
 }

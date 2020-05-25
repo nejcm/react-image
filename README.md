@@ -28,6 +28,8 @@
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
 - [Installation](#installation)
+- [Peer dependencies](#peer-dependencies)
+- [Usage](#usage)
 - [Docs & Examples](#docs--examples)
 - [Issues](#issues)
   - [🐛 Bugs](#-bugs)
@@ -43,21 +45,32 @@
 ## Installation
 
 ```shell
-
 $ npm install --save @nejcm/react-image
-
 ```
+
+## Peer dependencies
+
+_react-image_ requires the following peer dependencies to work. Make sure to
+have them installed in your project.
+
+> You can **skip this step** if those packages are already installed in your
+> project.
+
+```shell
+$ npm install react@latest react-dom@latest prop-types@latest emotion@latest @emotion/styled@latest
+```
+
+## Usage
 
 ```jsx
-
-import { Image, BackgroundImage } from '@nejcm/react-image';
-
+import {Image, BackgroundImage} from '@nejcm/react-image';
 ```
+
+For more examples check the docs.
 
 ## Docs & Examples
 
 > [**Docs & Examples**][docs-link]
-
 
 ## Issues
 
@@ -85,7 +98,6 @@ instead of filing an issue on GitHub.
 ## Authors
 
 - Nejc Muršič ( [GitHub][github], [LinkedIn][linkedin] )
-
 
 ## Contributors
 
