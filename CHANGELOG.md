@@ -1,3 +1,15 @@
+# [2.0.0](https://github.com/nejcm/react-image/compare/v1.2.2...v2.0.0) (2020-05-25)
+
+
+### vendor
+
+* moved emotion to peer deps. and updated packages ([ce20e78](https://github.com/nejcm/react-image/commit/ce20e78a18fadaf9b9520e76dadff571d9d103f6))
+
+
+### BREAKING CHANGES
+
+* Emotion was moved to peer dependency.
+
 ## [1.2.2](https://github.com/nejcm/react-image/compare/v1.2.1...v1.2.2) (2020-04-20)
 
 
