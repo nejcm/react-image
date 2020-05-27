@@ -162,3 +162,17 @@ Custom loader image (image url or base64 image).
     }}
   />
 </Preview>
+
+Lazy load image
+
+<Preview>
+  <Image
+    loader={
+      'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGlkPSJMNCIgdmlld0JveD0iMCAwIDIyIDIyIiB4PSIwcHgiIHk9IjBweCIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHhtbG5zOnhtbD0iaHR0cDovL3d3dy53My5vcmcvWE1MLzE5OTgvbmFtZXNwYWNlIiB4bWw6c3BhY2U9InByZXNlcnZlIiB2ZXJzaW9uPSIxLjEiIGVuYWJsZS1iYWNrZ3JvdW5kPSJuZXcgMCAwIDAgMCI+PGNpcmNsZSBmaWxsPSIjOTk5IiBzdHJva2U9Im5vbmUiIGN4PSIyIiBjeT0iMTEiIHI9IjIiPjxhbmltYXRlIHJlcGVhdENvdW50PSJpbmRlZmluaXRlIiBkdXI9IjFzIiBhdHRyaWJ1dGVOYW1lPSJvcGFjaXR5IiBiZWdpbj0iMC4xIiB2YWx1ZXM9IjA7MTswIi8+PC9jaXJjbGU+PGNpcmNsZSBmaWxsPSIjOTk5IiBzdHJva2U9Im5vbmUiIGN4PSIxMCIgY3k9IjExIiByPSIyIj48YW5pbWF0ZSByZXBlYXRDb3VudD0iaW5kZWZpbml0ZSIgZHVyPSIxcyIgYXR0cmlidXRlTmFtZT0ib3BhY2l0eSIgYmVnaW49IjAuMiIgdmFsdWVzPSIwOzE7MCIvPjwvY2lyY2xlPjxjaXJjbGUgZmlsbD0iIzk5OSIgc3Ryb2tlPSJub25lIiBjeD0iMTgiIGN5PSIxMSIgcj0iMiI+PGFuaW1hdGUgcmVwZWF0Q291bnQ9ImluZGVmaW5pdGUiIGR1cj0iMXMiIGF0dHJpYnV0ZU5hbWU9Im9wYWNpdHkiIGJlZ2luPSIwLjMiIHZhbHVlcz0iMDsxOzAiLz48L2NpcmNsZT48L3N2Zz4='
+    }
+    src="https://via.placeholder.com/1920x500.jpg?text=react-image"
+    maxWidth={1000}
+    alt="Placeholder"
+    lazy={true}
+  />
+</Preview>

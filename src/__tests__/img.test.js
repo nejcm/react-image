@@ -1,8 +1,17 @@
-import {fireEvent, render} from '@testing-library/react';
+import { fireEvent, render } from '@testing-library/react';
 import React from 'react';
-import {Image} from '../index';
+import { Image } from '../index';
 
 describe('Image', () => {
+  const intersectionObserverMock = () => ({
+    observe: () => null,
+    unobserve: () => null,
+    disconnect: () => null,
+  })
+  beforeAll(() => {
+    window.IntersectionObserver = jest.fn().mockImplementation(intersectionObserverMock);
+  });
+
   test('renders image with props', () => {
     const props = {
       className: 'custom-class',
@@ -12,20 +21,20 @@ describe('Image', () => {
       height: 600,
       title: 'Image title',
       srcset: [
-        {src: 'https://via.placeholder.com/800x600.jpg', condition: '800w'},
-        {src: 'https://via.placeholder.com/600x400.jpg', condition: '600w'},
-        {src: 'https://via.placeholder.com/400x200.jpg'},
+        { src: 'https://via.placeholder.com/800x600.jpg', condition: '800w' },
+        { src: 'https://via.placeholder.com/600x400.jpg', condition: '600w' },
+        { src: 'https://via.placeholder.com/400x200.jpg' },
       ],
       sizes: [
-        {size: '800px', condition: '(min-width: 768px)'},
-        {size: '600px', condition: '(min-width: 1200px)'},
-        {size: '1000px'},
+        { size: '800px', condition: '(min-width: 768px)' },
+        { size: '600px', condition: '(min-width: 1200px)' },
+        { size: '1000px' },
       ],
       backgroundColor: '#666',
       loader: false,
       hideOnError: false,
     };
-    const {getByTestId} = render(<Image data-testid="target" {...props} />);
+    const { getByTestId } = render(<Image data-testid="target" {...props} />);
     const element = getByTestId('target');
     expect(element).toHaveClass(props.className);
     expect(element).toHaveStyle({
@@ -46,7 +55,7 @@ describe('Image', () => {
       fallback: 'https://via.placeholder.com/800x600.jpg',
       alt: 'Image',
     };
-    const {getByTestId} = render(<Image data-testid="target" {...props} />);
+    const { getByTestId } = render(<Image data-testid="target" {...props} />);
     const element = getByTestId('target');
     expect(element).not.toHaveAttribute('srcset');
     expect(element).not.toHaveAttribute('sizes');
@@ -58,7 +67,7 @@ describe('Image', () => {
       fallback: 'no-image2.jpg',
       alt: 'Image',
     };
-    const {getByTestId} = render(<Image data-testid="target" {...props} />);
+    const { getByTestId } = render(<Image data-testid="target" {...props} />);
     const element = getByTestId('target');
 
     expect(element).toHaveAttribute('src', props.src);
@@ -73,7 +82,7 @@ describe('Image', () => {
       src: 'no-image.jpg',
       alt: 'Image',
     };
-    const {getByTestId} = render(<Image data-testid="target" {...props} />);
+    const { getByTestId } = render(<Image data-testid="target" {...props} />);
     const element = getByTestId('target');
 
     expect(element).toHaveAttribute('src', props.src);
@@ -90,7 +99,7 @@ describe('Image', () => {
       src: 'no-image.jpg',
       alt: 'Image',
     };
-    const {getByTestId} = render(<Image data-testid="target" {...props} />);
+    const { getByTestId } = render(<Image data-testid="target" {...props} />);
     const element = getByTestId('target');
 
     //expect(element).toHaveStyle({background: /.*url\(.*/i});
@@ -109,12 +118,26 @@ describe('Image', () => {
       src: 'no-image.jpg',
       alt: 'Image',
       hideOnError: false,
-      onLoad: () => {}, // for testing
+      onLoad: () => { }, // for testing
     };
-    const {getByTestId} = render(<Image data-testid="target" {...props} />);
+    const { getByTestId } = render(<Image data-testid="target" {...props} />);
     const element = getByTestId('target');
     expect(element).toHaveStyle({
       background: 'url(custom.svg) 50% no-repeat',
     });
+  });
+
+  test('should lazy load image', () => {
+    const props = {
+      src: 'https://via.placeholder.com/1024x600.jpg',
+      alt: 'Image',
+      hideOnError: false,
+      lazy: true,
+      lazyOptions: { threshold: 1 }
+    };
+    const { getByTestId } = render(<Image data-testid="target" {...props} />);
+    const element = getByTestId('target');
+    expect(element).toBeDefined();
+    expect(element).toHaveAttribute('src', "");
   });
 });

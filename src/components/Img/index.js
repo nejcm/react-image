@@ -1,6 +1,8 @@
+import useNativeLazyLoading from '@charlietango/use-native-lazy-loading';
 import PropTypes from 'prop-types';
 import React from 'react';
-import {ImageWrapper} from './styles';
+import { useInView } from 'react-intersection-observer';
+import { ImageWrapper } from './styles';
 
 const buildSrcSet = (srcSet) => {
   return srcSet
@@ -17,33 +19,74 @@ const buildSizes = (sizes) => {
 const onLoad = (event) => event.currentTarget.classList.add('loaded');
 
 const onError = (fallback, event) => {
-  const elem = event.currentTarget;
-  if (fallback && elem.src !== fallback) {
-    elem.src = fallback;
+  const img = event.currentTarget;
+  if (fallback && img.src !== fallback) {
+    img.src = fallback;
   } else {
-    elem.style.display = 'none';
+    img.style.display = 'none';
   }
+};
+
+const buildImage = ({
+  loader,
+  lazy,
+  lazyOptions,
+  fallback,
+  srcset,
+  sizes,
+  hideOnError,
+  ...rest
+}) => (
+    <ImageWrapper
+      loader={loader}
+      srcSet={buildSrcSet(srcset)}
+      sizes={buildSizes(sizes)}
+      onLoad={loader ? onLoad : null}
+      onError={
+        hideOnError ? onError.bind(null, fallback) : loader ? onLoad : null
+      }
+      {...rest}
+    />
+  );
+
+const Lazy = ({ children, ...options }) => {
+  const supportsLazyLoading = useNativeLazyLoading();
+  const [ref, inView] = useInView(options);
+  return (
+    <div ref={!supportsLazyLoading ? ref : undefined}>
+      {children(inView || supportsLazyLoading)}
+    </div>
+  );
 };
 
 const Img = ({
   loader = true,
-  fallback,
-  srcset,
-  sizes,
+  lazy,
+  lazyOptions = {
+    threshold: 0,
+    triggerOnce: true,
+    rootMargin: '150px 0px',
+  },
   hideOnError = true,
   ...rest
-}) => (
-  <ImageWrapper
-    loader={loader}
-    srcSet={buildSrcSet(srcset)}
-    sizes={buildSizes(sizes)}
-    onLoad={loader ? onLoad : null}
-    onError={
-      hideOnError ? onError.bind(null, fallback) : loader ? onLoad : null
-    }
-    {...rest}
-  />
-);
+}) => {
+  return lazy ? (
+    <Lazy {...lazyOptions}>
+      {(show) =>
+        buildImage({
+          loader,
+          hideOnError,
+          ...rest,
+          src: show ? rest.src : '',
+          srcSet: show ? rest.srcset : '',
+          loading: "lazy",
+        })
+      }
+    </Lazy>
+  ) : (
+      buildImage({ loader, hideOnError, ...rest })
+    );
+};
 
 Img.propTypes = {
   /**
@@ -76,6 +119,14 @@ Img.propTypes = {
     Show loader or custom loader
     */
   loader: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
+  /**
+    Lazy load image
+    */
+  lazy: PropTypes.bool,
+  /**
+    Lazy load options. Check react-intersection-observer for more info
+    */
+  lazyOptions: PropTypes.object,
   /**
     Image alt text
     */

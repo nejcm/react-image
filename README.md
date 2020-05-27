@@ -1,6 +1,6 @@
 # 🖼️ React image
 
-<blockquote>A simple react image and background image component with support for responsive images, fallback image and loader.</blockquote>
+<blockquote>A simple react image and background image component with support for responsive images, fallback image, lazy loading and loader.</blockquote>
 <br />
 
 <!-- prettier-ignore-start -->
