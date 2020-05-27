@@ -1,8 +1,7 @@
-import useNativeLazyLoading from '@charlietango/use-native-lazy-loading';
 import PropTypes from 'prop-types';
 import React from 'react';
-import { useInView } from 'react-intersection-observer';
-import { ImageWrapper } from './styles';
+import Lazy, {defaultOptions} from '../Lazy';
+import {ImageWrapper} from './styles';
 
 const buildSrcSet = (srcSet) => {
   return srcSet
@@ -37,36 +36,22 @@ const buildImage = ({
   hideOnError,
   ...rest
 }) => (
-    <ImageWrapper
-      loader={loader}
-      srcSet={buildSrcSet(srcset)}
-      sizes={buildSizes(sizes)}
-      onLoad={loader ? onLoad : null}
-      onError={
-        hideOnError ? onError.bind(null, fallback) : loader ? onLoad : null
-      }
-      {...rest}
-    />
-  );
-
-const Lazy = ({ children, ...options }) => {
-  const supportsLazyLoading = useNativeLazyLoading();
-  const [ref, inView] = useInView(options);
-  return (
-    <div ref={!supportsLazyLoading ? ref : undefined}>
-      {children(inView || supportsLazyLoading)}
-    </div>
-  );
-};
+  <ImageWrapper
+    loader={loader}
+    srcSet={buildSrcSet(srcset)}
+    sizes={buildSizes(sizes)}
+    onLoad={loader ? onLoad : null}
+    onError={
+      hideOnError ? onError.bind(null, fallback) : loader ? onLoad : null
+    }
+    {...rest}
+  />
+);
 
 const Img = ({
   loader = true,
   lazy,
-  lazyOptions = {
-    threshold: 0,
-    triggerOnce: true,
-    rootMargin: '150px 0px',
-  },
+  lazyOptions = defaultOptions,
   hideOnError = true,
   ...rest
 }) => {
@@ -77,15 +62,15 @@ const Img = ({
           loader,
           hideOnError,
           ...rest,
-          src: show ? rest.src : '',
-          srcSet: show ? rest.srcset : '',
-          loading: "lazy",
+          src: show ? rest.src : undefined,
+          srcSet: show ? rest.srcset : undefined,
+          loading: 'lazy',
         })
       }
     </Lazy>
   ) : (
-      buildImage({ loader, hideOnError, ...rest })
-    );
+    buildImage({loader, hideOnError, ...rest})
+  );
 };
 
 Img.propTypes = {

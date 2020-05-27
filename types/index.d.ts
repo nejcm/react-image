@@ -9,6 +9,9 @@ declare namespace ReactImage {
     fallback?: string;
     srcset?: Array<{src: string; condition?: string}>;
     sizes?: Array<{size: string; condition?: string}>;
+    loader?: boolean;
+    lazy?: boolean;
+    lazyOptions?: object;
     alt: string | number;
     width?: string | number;
     minWidth?: string | number;
@@ -30,6 +33,8 @@ declare namespace ReactImage {
       attachment?: string;
       repeat?: string;
     };
+    lazy?: boolean;
+    lazyOptions?: object;
     width?: string | number;
     minWidth?: string | number;
     maxWidth?: string | number;
