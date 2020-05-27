@@ -1,3 +1,10 @@
+# [2.1.0](https://github.com/nejcm/react-image/compare/v2.0.0...v2.1.0) (2020-05-27)
+
+
+### Features
+
+* Added support for lazy loading ([148930c](https://github.com/nejcm/react-image/commit/148930c83093e3bb45fd7829dd6967293d05470d))
+
 # [2.0.0](https://github.com/nejcm/react-image/compare/v1.2.2...v2.0.0) (2020-05-25)
 
 
