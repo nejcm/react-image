@@ -1,3 +1,10 @@
+## [2.2.1](https://github.com/nejcm/react-image/compare/v2.2.0...v2.2.1) (2020-05-28)
+
+
+### Bug Fixes
+
+* fixed lazy loading bugs, wrote unit tests ([278aac9](https://github.com/nejcm/react-image/commit/278aac949003e5442ddc8130df99496bd626791f))
+
 # [2.2.0](https://github.com/nejcm/react-image/compare/v2.1.0...v2.2.0) (2020-05-27)
 
 
