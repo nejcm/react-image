@@ -3,9 +3,9 @@ import React from 'react';
 import Lazy, {defaultOptions} from '../Lazy';
 import {BackgroundImageWrapper} from './styles';
 
-const BackgroundImage = ({lazy, lazyOptions = defaultOptions, ...rest}) => {
+const BackgroundImage = ({lazy, lazyOptions, ...rest}) => {
   return lazy ? (
-    <Lazy bg={true} {...lazyOptions}>
+    <Lazy bg={true} {...{...defaultOptions, ...lazyOptions}}>
       {(show) => (
         <BackgroundImageWrapper
           {...rest}

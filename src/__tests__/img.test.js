@@ -1,19 +1,10 @@
-import {fireEvent, render} from '@testing-library/react';
+import {fireEvent, render, waitFor} from '@testing-library/react';
 import React from 'react';
+import {act} from 'react-dom/test-utils';
+import {mockAllIsIntersecting} from 'react-intersection-observer/test-utils';
 import {Image} from '../index';
 
 describe('Image', () => {
-  const intersectionObserverMock = () => ({
-    observe: () => null,
-    unobserve: () => null,
-    disconnect: () => null,
-  });
-  beforeAll(() => {
-    window.IntersectionObserver = jest
-      .fn()
-      .mockImplementation(intersectionObserverMock);
-  });
-
   test('renders image with props', () => {
     const props = {
       className: 'custom-class',
@@ -96,6 +87,24 @@ describe('Image', () => {
     });
   });
 
+  test('should not hide image src on error without fallback', () => {
+    const props = {
+      src: 'no-image.jpg',
+      alt: 'Image',
+      hideOnError: false,
+    };
+    const {getByTestId} = render(<Image data-testid="target" {...props} />);
+    const element = getByTestId('target');
+
+    expect(element).toHaveAttribute('src', props.src);
+
+    fireEvent(element, new Event('error'));
+
+    expect(element).not.toHaveStyle({
+      display: 'none',
+    });
+  });
+
   test('should hide loader on error', () => {
     const props = {
       src: 'no-image.jpg',
@@ -129,7 +138,7 @@ describe('Image', () => {
     });
   });
 
-  test('should lazy load image', () => {
+  test('should lazy load image', async () => {
     const props = {
       src: 'https://via.placeholder.com/1024x600.jpg',
       alt: 'Image',
@@ -141,5 +150,9 @@ describe('Image', () => {
     const element = getByTestId('target');
     expect(element).toBeDefined();
     expect(element).not.toHaveAttribute('src');
+    act(() => {
+      mockAllIsIntersecting(true);
+    });
+    await waitFor(() => expect(element).toHaveAttribute('src'));
   });
 });

@@ -1,19 +1,10 @@
-import {render} from '@testing-library/react';
+import {render, waitFor} from '@testing-library/react';
 import React from 'react';
+import {act} from 'react-dom/test-utils';
+import {mockAllIsIntersecting} from 'react-intersection-observer/test-utils';
 import {BackgroundImage} from '../index';
 
 describe('Background image', () => {
-  const intersectionObserverMock = () => ({
-    observe: () => null,
-    unobserve: () => null,
-    disconnect: () => null,
-  });
-  beforeAll(() => {
-    window.IntersectionObserver = jest
-      .fn()
-      .mockImplementation(intersectionObserverMock);
-  });
-
   test('renders background image with props', () => {
     const props = {
       className: 'custom-class',
@@ -68,7 +59,7 @@ describe('Background image', () => {
     });
   });
 
-  test('should lazy load background image', () => {
+  test('should lazy load background image', async () => {
     const props = {
       src: 'https://via.placeholder.com/1024x600.jpg',
       lazy: true,
@@ -82,5 +73,10 @@ describe('Background image', () => {
     expect(element).not.toHaveStyle({
       backgroundImage: 'url()',
     });
+    act(() => {
+      mockAllIsIntersecting(true);
+    });
+    const style = `background-image: url(${props.src})`;
+    await waitFor(() => expect(element).toHaveStyle(style));
   });
 });

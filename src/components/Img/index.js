@@ -17,19 +17,20 @@ const buildSizes = (sizes) => {
 
 const onLoad = (event) => event.currentTarget.classList.add('loaded');
 
-const onError = (fallback, event) => {
+const onError = ({fallback, hideOnError}, event) => {
   const img = event.currentTarget;
   if (fallback && img.src !== fallback) {
     img.src = fallback;
-  } else {
+    return;
+  }
+  if (hideOnError) {
     img.style.display = 'none';
   }
+  onLoad(event);
 };
 
 const buildImage = ({
   loader,
-  lazy,
-  lazyOptions,
   fallback,
   srcset,
   sizes,
@@ -41,30 +42,28 @@ const buildImage = ({
     srcSet={buildSrcSet(srcset)}
     sizes={buildSizes(sizes)}
     onLoad={loader ? onLoad : null}
-    onError={
-      hideOnError ? onError.bind(null, fallback) : loader ? onLoad : null
-    }
+    onError={onError.bind(null, {fallback, hideOnError})}
     {...rest}
   />
 );
 
 const Img = ({
-  loader = true,
   lazy,
-  lazyOptions = defaultOptions,
+  lazyOptions,
+  loader = true,
   hideOnError = true,
   ...rest
 }) => {
   return lazy ? (
-    <Lazy {...lazyOptions}>
+    <Lazy {...{...defaultOptions, ...lazyOptions}}>
       {(show) =>
         buildImage({
           loader,
-          hideOnError,
+          hideOnError: show && hideOnError,
+          loading: 'lazy',
           ...rest,
           src: show ? rest.src : undefined,
           srcSet: show ? rest.srcset : undefined,
-          loading: 'lazy',
         })
       }
     </Lazy>
