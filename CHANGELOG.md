@@ -1,3 +1,10 @@
+# [2.3.0](https://github.com/nejcm/react-image/compare/v2.2.1...v2.3.0) (2020-05-30)
+
+
+### Features
+
+* allow strings on srcset and sizes attributes ([f531cea](https://github.com/nejcm/react-image/commit/f531cea4c7fb1a66eb0da0c37d19baa3de7de6a5))
+
 ## [2.2.1](https://github.com/nejcm/react-image/compare/v2.2.0...v2.2.1) (2020-05-28)
 
 
