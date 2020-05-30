@@ -1,7 +1,6 @@
 import styled from '@emotion/styled';
 import React from 'react';
-import LoaderSvg from '../../../assets/loader.svg';
-import {measuresCss} from '../../helpers';
+import {loader as defaultLoader, measuresCss} from '../../helpers';
 
 export const ImageWrapper = styled(
   ({
@@ -15,14 +14,12 @@ export const ImageWrapper = styled(
     ...rest
   }) => <img alt={alt} {...rest} />,
 )`
-  width: 100%;
-  height: auto;
   ${({backgroundColor, loader, ...rest}) => `
     ${measuresCss(rest)}
     ${
       loader
         ? `background: url(${
-            typeof loader === 'string' ? loader : LoaderSvg
+            typeof loader === 'string' ? loader : defaultLoader
           }) 50% no-repeat; 
           &.loaded {
             background-image: none;

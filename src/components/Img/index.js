@@ -3,17 +3,13 @@ import React from 'react';
 import Lazy, {defaultOptions} from '../Lazy';
 import {ImageWrapper} from './styles';
 
-const buildSrcSet = (srcSet) => {
-  return srcSet
-    ? srcSet.map((x) => `${x.src} ${x.condition || ''}`).join(',')
-    : null;
-};
+const isString = (val) => typeof val === 'string';
 
-const buildSizes = (sizes) => {
-  return sizes
-    ? sizes.map((x) => `${x.condition || ''} ${x.size}`).join(',')
-    : null;
-};
+const buildSrcSet = (srcSet) =>
+  srcSet ? srcSet.map((x) => `${x.src} ${x.condition || ''}`).join(',') : null;
+
+const buildSizes = (sizes) =>
+  sizes ? sizes.map((x) => `${x.condition || ''} ${x.size}`).join(',') : null;
 
 const onLoad = (event) => event.currentTarget.classList.add('loaded');
 
@@ -29,46 +25,49 @@ const onError = ({fallback, hideOnError}, event) => {
   onLoad(event);
 };
 
-const buildImage = ({
-  loader,
-  fallback,
+const Img = ({
+  src,
   srcset,
   sizes,
-  hideOnError,
-  ...rest
-}) => (
-  <ImageWrapper
-    loader={loader}
-    srcSet={buildSrcSet(srcset)}
-    sizes={buildSizes(sizes)}
-    onLoad={loader ? onLoad : null}
-    onError={onError.bind(null, {fallback, hideOnError})}
-    {...rest}
-  />
-);
-
-const Img = ({
+  fallback,
   lazy,
   lazyOptions,
   loader = true,
   hideOnError = true,
   ...rest
 }) => {
+  const imgSrcSet = isString(srcset) ? srcset : buildSrcSet(srcset);
+  const imgSizes = isString(sizes) ? sizes : buildSizes(sizes);
+  const onImgLoad = loader ? onLoad : null;
+
   return lazy ? (
     <Lazy {...{...defaultOptions, ...lazyOptions}}>
-      {(show) =>
-        buildImage({
-          loader,
-          hideOnError: show && hideOnError,
-          loading: 'lazy',
-          ...rest,
-          src: show ? rest.src : undefined,
-          srcSet: show ? rest.srcset : undefined,
-        })
-      }
+      {(show) => (
+        <ImageWrapper
+          src={show ? src : undefined}
+          loader={loader}
+          srcSet={show ? imgSrcSet : undefined}
+          sizes={show ? imgSizes : undefined}
+          onLoad={onImgLoad}
+          onError={onError.bind(null, {
+            fallback,
+            hideOnError: show && hideOnError,
+          })}
+          loading="lazy"
+          {...rest}
+        />
+      )}
     </Lazy>
   ) : (
-    buildImage({loader, hideOnError, ...rest})
+    <ImageWrapper
+      src={src}
+      loader={loader}
+      srcSet={imgSrcSet}
+      sizes={imgSizes}
+      onLoad={onImgLoad}
+      onError={onError.bind(null, {fallback, hideOnError})}
+      {...rest}
+    />
   );
 };
 
@@ -84,21 +83,27 @@ Img.propTypes = {
   /**
     Image srcset
     */
-  srcset: PropTypes.arrayOf(
-    PropTypes.shape({
-      src: PropTypes.string.isRequired,
-      condition: PropTypes.string,
-    }),
-  ),
+  srcset: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.arrayOf(
+      PropTypes.shape({
+        src: PropTypes.string.isRequired,
+        condition: PropTypes.string,
+      }),
+    ),
+  ]),
   /**
     Image sizes
     */
-  sizes: PropTypes.arrayOf(
-    PropTypes.shape({
-      size: PropTypes.string.isRequired,
-      condition: PropTypes.string,
-    }),
-  ),
+  sizes: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.arrayOf(
+      PropTypes.shape({
+        size: PropTypes.string.isRequired,
+        condition: PropTypes.string,
+      }),
+    ),
+  ]),
   /**
     Show loader or custom loader
     */

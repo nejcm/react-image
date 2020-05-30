@@ -7,8 +7,8 @@ declare namespace ReactImage {
   export interface ImageProps extends React.HTMLAttributes<HTMLImageElement> {
     src: string;
     fallback?: string;
-    srcset?: Array<{src: string; condition?: string}>;
-    sizes?: Array<{size: string; condition?: string}>;
+    srcset?: string | Array<{src: string; condition?: string}>;
+    sizes?: string | Array<{size: string; condition?: string}>;
     loader?: boolean;
     lazy?: boolean;
     lazyOptions?: object;
