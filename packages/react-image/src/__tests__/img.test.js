@@ -54,6 +54,20 @@ describe('Image', () => {
     expect(element).not.toHaveAttribute('sizes');
   });
 
+  test('renders image with string srcset and sizes', () => {
+    const props = {
+      src: 'https://via.placeholder.com/1024x600.jpg',
+      srcset:
+        'https://via.placeholder.com/400x200.jpg 400w, https://via.placeholder.com/600x400.jpg 600w',
+      sizes: '(max-width: 600px) 480px, 800px',
+      alt: 'Image',
+    };
+    const {getByTestId} = render(<Image data-testid="target" {...props} />);
+    const element = getByTestId('target');
+    expect(element).toHaveAttribute('srcset', props.srcset);
+    expect(element).toHaveAttribute('sizes', props.sizes);
+  });
+
   test('should replace image src with fallback on error', () => {
     const props = {
       src: 'no-image.jpg',
@@ -105,37 +119,19 @@ describe('Image', () => {
     });
   });
 
-  test('should hide loader on error', () => {
+  test('should have class loaded on load', () => {
     const props = {
+      loader: true,
       src: 'no-image.jpg',
       alt: 'Image',
     };
     const {getByTestId} = render(<Image data-testid="target" {...props} />);
     const element = getByTestId('target');
-
-    //expect(element).toHaveStyle({background: /.*url\(.*/i});
 
     fireEvent(element, new Event('load'));
 
-    // Should hide on error
-    expect(element).toHaveStyle({
-      backgroundImage: 'none',
-    });
-  });
-
-  test('should show custom loader', () => {
-    const props = {
-      loader: 'custom.svg',
-      src: 'no-image.jpg',
-      alt: 'Image',
-      hideOnError: false,
-      onLoad: () => {}, // for testing
-    };
-    const {getByTestId} = render(<Image data-testid="target" {...props} />);
-    const element = getByTestId('target');
-    expect(element).toHaveStyle({
-      background: 'url(custom.svg) 50% no-repeat',
-    });
+    // Should
+    expect(element).toHaveClass('loaded');
   });
 
   test('should lazy load image', async () => {

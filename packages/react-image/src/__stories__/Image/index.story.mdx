@@ -28,17 +28,19 @@ import {Image} from '../../index.js';
 
 <br />
 
-### 1. With fallback
+### With fallback
 
 <Preview>
   <Image
     src="https://wrong-url.com"
     alt="Placeholder"
     fallback="https://via.placeholder.com/1600x600.jpg?text=fallback-1600x600"
+    width="100%"
+    height="auto"
   />
 </Preview>
 
-### 2. With srcset
+### With srcset
 
 Resize browser window and refresh page to see effect.
 
@@ -64,10 +66,12 @@ Resize browser window and refresh page to see effect.
         condition: '1600w',
       },
     ]}
+    width="100%"
+    height="auto"
   />
 </Preview>
 
-### 2. With sizes
+### With sizes
 
 Resize browser window and refresh page to see effect.
 
@@ -107,10 +111,12 @@ Resize browser window and refresh page to see effect.
         condition: '(max-width: 767px)',
       },
     ]}
+    width="100%"
+    height="auto"
   />
 </Preview>
 
-### 4. Hide on error
+### Hide on error
 
 Hide image in case of error.
 
@@ -118,7 +124,7 @@ Hide image in case of error.
   <Image src="https://wrong-url.com" alt="Placeholder" />
 </Preview>
 
-### 5. Loader
+### Loader
 
 Show loader.
 
@@ -132,46 +138,57 @@ Show loader.
     height={150}
     minHeight={150}
     onError={() => {
-      /* Just for demonstration purposes overload this method */
+      /* Overriding just for demonstration purposes */
     }}
     onLoad={() => {
-      /* Just for demonstration purposes overload this method */
+      /* Overriding just for demonstration purposes */
     }}
   />
 </Preview>
 
-Custom loader image (image url or base64 image).
+### Customized loader
+
+Custom loader can be applied through styles. Bellow is only one of the possible
+ways how to apply it. On image load the element receives a `loaded` class so the
+styles can be removed.
 
 <Preview>
   <Image
-    loader={
-      'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGlkPSJMNCIgdmlld0JveD0iMCAwIDIyIDIyIiB4PSIwcHgiIHk9IjBweCIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHhtbG5zOnhtbD0iaHR0cDovL3d3dy53My5vcmcvWE1MLzE5OTgvbmFtZXNwYWNlIiB4bWw6c3BhY2U9InByZXNlcnZlIiB2ZXJzaW9uPSIxLjEiIGVuYWJsZS1iYWNrZ3JvdW5kPSJuZXcgMCAwIDAgMCI+PGNpcmNsZSBmaWxsPSIjOTk5IiBzdHJva2U9Im5vbmUiIGN4PSIyIiBjeT0iMTEiIHI9IjIiPjxhbmltYXRlIHJlcGVhdENvdW50PSJpbmRlZmluaXRlIiBkdXI9IjFzIiBhdHRyaWJ1dGVOYW1lPSJvcGFjaXR5IiBiZWdpbj0iMC4xIiB2YWx1ZXM9IjA7MTswIi8+PC9jaXJjbGU+PGNpcmNsZSBmaWxsPSIjOTk5IiBzdHJva2U9Im5vbmUiIGN4PSIxMCIgY3k9IjExIiByPSIyIj48YW5pbWF0ZSByZXBlYXRDb3VudD0iaW5kZWZpbml0ZSIgZHVyPSIxcyIgYXR0cmlidXRlTmFtZT0ib3BhY2l0eSIgYmVnaW49IjAuMiIgdmFsdWVzPSIwOzE7MCIvPjwvY2lyY2xlPjxjaXJjbGUgZmlsbD0iIzk5OSIgc3Ryb2tlPSJub25lIiBjeD0iMTgiIGN5PSIxMSIgcj0iMiI+PGFuaW1hdGUgcmVwZWF0Q291bnQ9ImluZGVmaW5pdGUiIGR1cj0iMXMiIGF0dHJpYnV0ZU5hbWU9Im9wYWNpdHkiIGJlZ2luPSIwLjMiIHZhbHVlcz0iMDsxOzAiLz48L2NpcmNsZT48L3N2Zz4='
-    }
     src="placeholder.png"
     alt="Placeholder"
+    className="custom-loader"
+    style={{
+      backgroundImage:
+        'url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGlkPSJMNCIgdmlld0JveD0iMCAwIDIyIDIyIiB4PSIwcHgiIHk9IjBweCIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHhtbG5zOnhtbD0iaHR0cDovL3d3dy53My5vcmcvWE1MLzE5OTgvbmFtZXNwYWNlIiB4bWw6c3BhY2U9InByZXNlcnZlIiB2ZXJzaW9uPSIxLjEiIGVuYWJsZS1iYWNrZ3JvdW5kPSJuZXcgMCAwIDAgMCI+PGNpcmNsZSBmaWxsPSIjOTk5IiBzdHJva2U9Im5vbmUiIGN4PSIyIiBjeT0iMTEiIHI9IjIiPjxhbmltYXRlIHJlcGVhdENvdW50PSJpbmRlZmluaXRlIiBkdXI9IjFzIiBhdHRyaWJ1dGVOYW1lPSJvcGFjaXR5IiBiZWdpbj0iMC4xIiB2YWx1ZXM9IjA7MTswIi8+PC9jaXJjbGU+PGNpcmNsZSBmaWxsPSIjOTk5IiBzdHJva2U9Im5vbmUiIGN4PSIxMCIgY3k9IjExIiByPSIyIj48YW5pbWF0ZSByZXBlYXRDb3VudD0iaW5kZWZpbml0ZSIgZHVyPSIxcyIgYXR0cmlidXRlTmFtZT0ib3BhY2l0eSIgYmVnaW49IjAuMiIgdmFsdWVzPSIwOzE7MCIvPjwvY2lyY2xlPjxjaXJjbGUgZmlsbD0iIzk5OSIgc3Ryb2tlPSJub25lIiBjeD0iMTgiIGN5PSIxMSIgcj0iMiI+PGFuaW1hdGUgcmVwZWF0Q291bnQ9ImluZGVmaW5pdGUiIGR1cj0iMXMiIGF0dHJpYnV0ZU5hbWU9Im9wYWNpdHkiIGJlZ2luPSIwLjMiIHZhbHVlcz0iMDsxOzAiLz48L2NpcmNsZT48L3N2Zz4=)',
+      backgroundSize: 50,
+      backgroundColor: '#f9f9f9',
+      backgroundPosition: '50%',
+      backgroundRepeat: 'no-repeat',
+    }}
     width={180}
     minWidth={180}
     height={150}
     minHeight={150}
-    style={{backgroundSize: 50}}
     onError={() => {
-      /* Just for demonstration purposes overload this method */
+      /* Overriding just for demonstration purposes */
+      console.log('Error');
     }}
     onLoad={() => {
-      /* Just for demonstration purposes overload this method */
+      /* Overriding just for demonstration purposes */
+      console.log('Load');
     }}
   />
 </Preview>
 
-Lazy load image
+### Lazy load image
 
 <Preview>
   <Image
-    loader={
-      'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIGlkPSJMNCIgdmlld0JveD0iMCAwIDIyIDIyIiB4PSIwcHgiIHk9IjBweCIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiIHhtbG5zOnhtbD0iaHR0cDovL3d3dy53My5vcmcvWE1MLzE5OTgvbmFtZXNwYWNlIiB4bWw6c3BhY2U9InByZXNlcnZlIiB2ZXJzaW9uPSIxLjEiIGVuYWJsZS1iYWNrZ3JvdW5kPSJuZXcgMCAwIDAgMCI+PGNpcmNsZSBmaWxsPSIjOTk5IiBzdHJva2U9Im5vbmUiIGN4PSIyIiBjeT0iMTEiIHI9IjIiPjxhbmltYXRlIHJlcGVhdENvdW50PSJpbmRlZmluaXRlIiBkdXI9IjFzIiBhdHRyaWJ1dGVOYW1lPSJvcGFjaXR5IiBiZWdpbj0iMC4xIiB2YWx1ZXM9IjA7MTswIi8+PC9jaXJjbGU+PGNpcmNsZSBmaWxsPSIjOTk5IiBzdHJva2U9Im5vbmUiIGN4PSIxMCIgY3k9IjExIiByPSIyIj48YW5pbWF0ZSByZXBlYXRDb3VudD0iaW5kZWZpbml0ZSIgZHVyPSIxcyIgYXR0cmlidXRlTmFtZT0ib3BhY2l0eSIgYmVnaW49IjAuMiIgdmFsdWVzPSIwOzE7MCIvPjwvY2lyY2xlPjxjaXJjbGUgZmlsbD0iIzk5OSIgc3Ryb2tlPSJub25lIiBjeD0iMTgiIGN5PSIxMSIgcj0iMiI+PGFuaW1hdGUgcmVwZWF0Q291bnQ9ImluZGVmaW5pdGUiIGR1cj0iMXMiIGF0dHJpYnV0ZU5hbWU9Im9wYWNpdHkiIGJlZ2luPSIwLjMiIHZhbHVlcz0iMDsxOzAiLz48L2NpcmNsZT48L3N2Zz4='
-    }
+    loader
     src="https://via.placeholder.com/1920x500.jpg?text=react-image"
     maxWidth={1000}
+    width="100%"
+    height="auto"
     alt="Placeholder"
     lazy={true}
   />

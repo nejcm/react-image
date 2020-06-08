@@ -1,0 +1,31 @@
+{
+  "react-image-emotion.cjs.js": {
+    "bundled": 14961,
+    "minified": 9958,
+    "gzipped": 2373
+  },
+  "react-image-emotion.umd.min.js": {
+    "bundled": 26647,
+    "minified": 11370,
+    "gzipped": 3558
+  },
+  "react-image-emotion.umd.js": {
+    "bundled": 30046,
+    "minified": 12899,
+    "gzipped": 3965
+  },
+  "react-image-emotion.esm.js": {
+    "bundled": 14523,
+    "minified": 9610,
+    "gzipped": 2294,
+    "treeshaked": {
+      "rollup": {
+        "code": 3793,
+        "import_statements": 419
+      },
+      "webpack": {
+        "code": 5127
+      }
+    }
+  }
+}

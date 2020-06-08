@@ -1,0 +1,31 @@
+{
+  "react-image.cjs.js": {
+    "bundled": 14963,
+    "minified": 9960,
+    "gzipped": 2375
+  },
+  "react-image.umd.min.js": {
+    "bundled": 26647,
+    "minified": 11370,
+    "gzipped": 3555
+  },
+  "react-image.umd.js": {
+    "bundled": 30046,
+    "minified": 12899,
+    "gzipped": 3962
+  },
+  "react-image.esm.js": {
+    "bundled": 14525,
+    "minified": 9612,
+    "gzipped": 2291,
+    "treeshaked": {
+      "rollup": {
+        "code": 3795,
+        "import_statements": 421
+      },
+      "webpack": {
+        "code": 5129
+      }
+    }
+  }
+}

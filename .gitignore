@@ -1,20 +1,18 @@
-node_modules
-coverage
-dist
+**/node_modules
 .opt-in
 .opt-out
 .DS_Store
 .next
-.eslintcache
-.docz
-storybook-static
+**/.eslintcache
+**/.docz
+**/.storybook-static
 
 # testing
-/coverage
+**/coverage
 
 # production
-/build
-/dist
+**/build
+**/dist
 
 # misc
 .DS_Store

@@ -32,23 +32,20 @@ const Img = ({
   fallback,
   lazy,
   lazyOptions,
-  loader = true,
   hideOnError = true,
   ...rest
 }) => {
   const imgSrcSet = isString(srcset) ? srcset : buildSrcSet(srcset);
   const imgSizes = isString(sizes) ? sizes : buildSizes(sizes);
-  const onImgLoad = loader ? onLoad : null;
 
   return lazy ? (
     <Lazy {...{...defaultOptions, ...lazyOptions}}>
       {(show) => (
         <ImageWrapper
           src={show ? src : undefined}
-          loader={loader}
           srcSet={show ? imgSrcSet : undefined}
           sizes={show ? imgSizes : undefined}
-          onLoad={onImgLoad}
+          onLoad={onLoad}
           onError={onError.bind(null, {
             fallback,
             hideOnError: show && hideOnError,
@@ -61,10 +58,9 @@ const Img = ({
   ) : (
     <ImageWrapper
       src={src}
-      loader={loader}
       srcSet={imgSrcSet}
       sizes={imgSizes}
-      onLoad={onImgLoad}
+      onLoad={onLoad}
       onError={onError.bind(null, {fallback, hideOnError})}
       {...rest}
     />
@@ -107,7 +103,7 @@ Img.propTypes = {
   /**
     Show loader or custom loader
     */
-  loader: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
+  loader: PropTypes.bool,
   /**
     Lazy load image
     */

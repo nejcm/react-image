@@ -12,8 +12,8 @@ module.exports = {
   collectCoverage: true,
   collectCoverageFrom: [
     'src/**/*.{js,jsx,ts,tsx}',
-    '!src/**/*.d.ts', 
-    '!src/**/*.story.{js,jsx,ts,tsx}'
+    '!src/**/*.d.ts',
+    '!src/**/*.story.{js,jsx,ts,tsx}',
   ],
   coverageDirectory: './coverage',
   coverageReporters: ['json-summary', 'json', 'lcov', 'text'],
@@ -37,7 +37,7 @@ module.exports = {
   ],
   testPathIgnorePatterns: [...ignores],
   transform: {
-    '^.+\\.(js|jsx|ts|tsx)$': '<rootDir>/node_modules/babel-jest',
+    '^.+\\.(js|jsx|ts|tsx)$': 'babel-jest',
     '^.+\\.css$': '<rootDir>/config/jest/cssTransform.js',
     '^(?!.*\\.(js|jsx|css|json)$)': '<rootDir>/config/jest/fileTransform.js',
   },

@@ -24,6 +24,7 @@ describe('Helpers', () => {
       maxHeight: '100vh',
     };
     const result = measuresCss(props);
+    console.log(result);
     expect(result).not.toBeNull();
     expect(result.includes(`width: ${props.width}px`)).toBeTruthy();
     expect(result.includes(`height: ${props.height}`)).toBeTruthy();
