@@ -20,18 +20,16 @@ export const ImageWrapper = styled(
     ${
       loader
         ? `
-          background: linear-gradient(
-            90deg,
-            rgba(30, 30, 30, 0.04) 0%,
-            rgba(30, 30, 30, 0.095) 25%,
-            rgba(30, 30, 30, 0.04) 50%
-          );
-          background-size: 200%;
-          background-position: 100% 0;
-          animation: loading 1.75s 0.5s infinite;
-
-          &.loaded {
-            animation: none;
+          &:not(.loaded) {
+            background: linear-gradient(
+              90deg,
+              rgba(30, 30, 30, 0.04) 0%,
+              rgba(30, 30, 30, 0.095) 25%,
+              rgba(30, 30, 30, 0.04) 50%
+            );
+            background-size: 200%;
+            background-position: 100% 0;
+            animation: loading 1.75s 0.5s infinite;
           }
           
           @keyframes loading {

@@ -12,12 +12,12 @@
   "react-image-emotion.umd.js": {
     "bundled": 30046,
     "minified": 12899,
-    "gzipped": 3965
+    "gzipped": 3962
   },
   "react-image-emotion.esm.js": {
     "bundled": 14523,
     "minified": 9610,
-    "gzipped": 2294,
+    "gzipped": 2293,
     "treeshaked": {
       "rollup": {
         "code": 3793,
