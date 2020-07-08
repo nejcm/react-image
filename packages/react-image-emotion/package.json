@@ -1,6 +1,6 @@
 {
   "name": "@nejcm/react-image-emotion",
-  "version": "3.0.1",
+  "version": "3.0.3",
   "author": "Nejc Mursic <nmursi2@gmail.com> (https://github.com/nejcm)",
   "description": "React image component",
   "source": "src/index.js",
