@@ -1,3 +1,10 @@
+## [3.0.2](https://github.com/nejcm/react-image/compare/v3.0.1...v3.0.2) (2020-07-08)
+
+
+### Bug Fixes
+
+* fixed peer deps. and updated deps. ([607b6a8](https://github.com/nejcm/react-image/commit/607b6a8ac4867e53edb673d99755fa95700dcb91))
+
 ## [3.0.1](https://github.com/nejcm/react-image/compare/v3.0.0...v3.0.1) (2020-06-11)
 
 
