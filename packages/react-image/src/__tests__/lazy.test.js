@@ -5,7 +5,7 @@ import {mockAllIsIntersecting} from 'react-intersection-observer/test-utils';
 import Lazy from '../components/Lazy';
 
 describe('Lazy', () => {
-  test('renders lazy with props', async () => {
+  test('should not render lazy with props', async () => {
     const on = 'On';
     const off = 'Off';
     const props = {

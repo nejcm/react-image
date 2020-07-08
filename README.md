@@ -28,7 +28,6 @@
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
 - [Installation](#installation)
-- [Peer dependencies](#peer-dependencies)
 - [Usage](#usage)
 - [Docs & Examples](#docs--examples)
 - [Issues](#issues)
@@ -44,14 +43,7 @@
 
 ## Installation
 
-```shell
-# with styled-components
-$ npm install --save @nejcm/react-image
-# with emotion
-$ npm install --save @nejcm/react-image-emotion
-```
-
-## Peer dependencies
+### Peer dependencies
 
 react-image requires the following peer dependencies to work. Make sure to have
 them installed in your project.
@@ -61,12 +53,21 @@ them installed in your project.
 
 ```shell
 # with styled-components
-$ npm install react react-dom styled-components @babel/runtime
+$ npm install react react-dom styled-components --save
 # with emotion
-$ npm install react react-dom @emotion/styled @emotion/core @babel/runtime
+$ npm install react react-dom @emotion/styled @emotion/core --save
 ```
 
-### Usage
+### Package
+
+```shell
+# with styled-components
+$ npm install @nejcm/react-image --save
+# with emotion
+$ npm install @nejcm/react-image-emotion --save
+```
+
+## Usage
 
 ```jsx
 // with styled-components
