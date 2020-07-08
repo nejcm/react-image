@@ -1,3 +1,10 @@
+## [3.0.3](https://github.com/nejcm/react-image/compare/v3.0.2...v3.0.3) (2020-07-08)
+
+
+### Bug Fixes
+
+* bumped version ([80e8a9a](https://github.com/nejcm/react-image/commit/80e8a9a302693c97b3951dd644c9eadb3014566f))
+
 ## [3.0.2](https://github.com/nejcm/react-image/compare/v3.0.1...v3.0.2) (2020-07-08)
 
 
